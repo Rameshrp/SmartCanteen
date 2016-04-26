@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SmartCanteenDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CouponMaster">
+          <Key>
+            <PropertyRef Name="CM_ID" />
+          </Key>
+          <Property Name="CM_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CM_Empid" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CM_Date" Type="datetime" Nullable="false" />
+          <Property Name="CM_FLR_ID" Type="int" Nullable="false" />
+          <Property Name="CM_Requested_bln" Type="bit" Nullable="false" />
+          <Property Name="CM_Accepted_bln" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CouponNotification">
+          <Key>
+            <PropertyRef Name="CN_ID" />
+          </Key>
+          <Property Name="CN_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CN_CM_ID" Type="bigint" Nullable="false" />
+          <Property Name="CN_CM_Empid" Type="varchar" MaxLength="20" />
+          <Property Name="CN_CM_Date" Type="datetime" Nullable="false" />
+          <Property Name="CN_CM_FLR_ID" Type="int" Nullable="false" />
+          <Property Name="CN_CM_Requested_bln" Type="bit" Nullable="false" />
+          <Property Name="CN_CM_Accepted_bln" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DailyMenuMaster">
+          <Key>
+            <PropertyRef Name="DMM_ID" />
+          </Key>
+          <Property Name="DMM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DMM_WDM_ID" Type="int" />
+          <Property Name="DMM_MI_ID" Type="int" />
+          <Property Name="DMM_MI_FCM_ID" Type="int" />
+          <Property Name="DMM_FM_ID" Type="int" />
+          <Property Name="DMM_From_Date" Type="date" />
+          <Property Name="DMM_To_Date" Type="date" />
+          <Property Name="Todays_Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpLoginId" />
+          </Key>
+          <Property Name="Empid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="EmpLastName" Type="varchar" MaxLength="50" />
+          <Property Name="EmpMobNo" Type="bigint" />
+          <Property Name="EmpLoginId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmpPassword" Type="varchar" MaxLength="20" />
+          <Property Name="EmpType" Type="int" />
+          <Property Name="Emp_FM_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Floor_Master">
+          <Key>
+            <PropertyRef Name="FM_Description" />
+          </Key>
+          <Property Name="FM_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FM_Description" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FoodCategoryMaster">
+          <Key>
+            <PropertyRef Name="FCM_Type" />
+          </Key>
+          <Property Name="FCM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FCM_Type" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FoodOrderMaster">
+          <Key>
+            <PropertyRef Name="FOM_ID" />
+          </Key>
+          <Property Name="FOM_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FOM_EmpLoginId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FOM_FloorId" Type="int" Nullable="false" />
+          <Property Name="FOM_CategoryId" Type="int" Nullable="false" />
+          <Property Name="FOM_MenuItemId" Type="int" Nullable="false" />
+          <Property Name="FOM_Qty" Type="int" Nullable="false" />
+          <Property Name="FOM_OrderNumber" Type="bigint" />
+          <Property Name="FOM_OrderCost" Type="float" Nullable="false" />
+          <Property Name="FOM_Date" Type="datetime" Nullable="false" />
+          <Property Name="FOM_ToCart" Type="bit" Nullable="false" />
+          <Property Name="FOM_RequestedBln" Type="bit" Nullable="false" />
+          <Property Name="FOM_ConfirmedBln" Type="bit" Nullable="false" />
+          <Property Name="FOM_CancelledBln" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuItem_Master">
+          <Key>
+            <PropertyRef Name="MI_ID" />
+          </Key>
+          <Property Name="MI_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MI_Description" Type="varchar" MaxLength="100" />
+          <Property Name="MI_Price" Type="float" />
+          <Property Name="MI_FCM_ID" Type="int" />
+          <Property Name="MI_FoodType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Other_Expense">
+          <Key>
+            <PropertyRef Name="Expense_Id" />
+          </Key>
+          <Property Name="Expense_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpLoginId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Expense_Amount" Type="float" Nullable="false" />
+          <Property Name="Expense_Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserType" />
+          </Key>
+          <Property Name="UserType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypedescription" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Weekday_Master">
+          <Key>
+            <PropertyRef Name="WDM_Description" />
+          </Key>
+          <Property Name="WDM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WDM_Description" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SmartCanteenDBModelStoreContainer">
+          <EntitySet Name="CouponMaster" EntityType="Self.CouponMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CouponNotification" EntityType="Self.CouponNotification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyMenuMaster" EntityType="Self.DailyMenuMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Floor_Master" EntityType="Self.Floor_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodCategoryMaster" EntityType="Self.FoodCategoryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodOrderMaster" EntityType="Self.FoodOrderMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuItem_Master" EntityType="Self.MenuItem_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Other_Expense" EntityType="Self.Other_Expense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Weekday_Master" EntityType="Self.Weekday_Master" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmartCanteenDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CouponMaster">
+          <Key>
+            <PropertyRef Name="CM_ID" />
+          </Key>
+          <Property Name="CM_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CM_Empid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CM_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CM_FLR_ID" Type="Int32" Nullable="false" />
+          <Property Name="CM_Requested_bln" Type="Boolean" Nullable="false" />
+          <Property Name="CM_Accepted_bln" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CouponNotification">
+          <Key>
+            <PropertyRef Name="CN_ID" />
+          </Key>
+          <Property Name="CN_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CN_CM_ID" Type="Int64" Nullable="false" />
+          <Property Name="CN_CM_Empid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CN_CM_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CN_CM_FLR_ID" Type="Int32" Nullable="false" />
+          <Property Name="CN_CM_Requested_bln" Type="Boolean" Nullable="false" />
+          <Property Name="CN_CM_Accepted_bln" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DailyMenuMaster">
+          <Key>
+            <PropertyRef Name="DMM_ID" />
+          </Key>
+          <Property Name="DMM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DMM_WDM_ID" Type="Int32" />
+          <Property Name="DMM_MI_ID" Type="Int32" />
+          <Property Name="DMM_MI_FCM_ID" Type="Int32" />
+          <Property Name="DMM_FM_ID" Type="Int32" />
+          <Property Name="DMM_From_Date" Type="DateTime" Precision="0" />
+          <Property Name="DMM_To_Date" Type="DateTime" Precision="0" />
+          <Property Name="Todays_Date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpLoginId" />
+          </Key>
+          <Property Name="Empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpMobNo" Type="Int64" />
+          <Property Name="EmpLoginId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmpPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpType" Type="Int32" />
+          <Property Name="Emp_FM_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Floor_Master">
+          <Key>
+            <PropertyRef Name="FM_Description" />
+          </Key>
+          <Property Name="FM_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FM_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FoodCategoryMaster">
+          <Key>
+            <PropertyRef Name="FCM_Type" />
+          </Key>
+          <Property Name="FCM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FCM_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FoodOrderMaster">
+          <Key>
+            <PropertyRef Name="FOM_ID" />
+          </Key>
+          <Property Name="FOM_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FOM_EmpLoginId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FOM_FloorId" Type="Int32" Nullable="false" />
+          <Property Name="FOM_CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="FOM_MenuItemId" Type="Int32" Nullable="false" />
+          <Property Name="FOM_Qty" Type="Int32" Nullable="false" />
+          <Property Name="FOM_OrderNumber" Type="Int64" />
+          <Property Name="FOM_OrderCost" Type="Double" Nullable="false" />
+          <Property Name="FOM_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FOM_ToCart" Type="Boolean" Nullable="false" />
+          <Property Name="FOM_RequestedBln" Type="Boolean" Nullable="false" />
+          <Property Name="FOM_ConfirmedBln" Type="Boolean" Nullable="false" />
+          <Property Name="FOM_CancelledBln" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuItem_Master">
+          <Key>
+            <PropertyRef Name="MI_ID" />
+          </Key>
+          <Property Name="MI_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MI_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MI_Price" Type="Double" />
+          <Property Name="MI_FCM_ID" Type="Int32" />
+          <Property Name="MI_FoodType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserType" />
+          </Key>
+          <Property Name="UserType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypedescription" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Weekday_Master">
+          <Key>
+            <PropertyRef Name="WDM_Description" />
+          </Key>
+          <Property Name="WDM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WDM_Description" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SmartCanteenDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CouponMasters" EntityType="Self.CouponMaster" />
+          <EntitySet Name="CouponNotifications" EntityType="Self.CouponNotification" />
+          <EntitySet Name="DailyMenuMasters" EntityType="Self.DailyMenuMaster" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Floor_Master" EntityType="Self.Floor_Master" />
+          <EntitySet Name="FoodCategoryMasters" EntityType="Self.FoodCategoryMaster" />
+          <EntitySet Name="FoodOrderMasters" EntityType="Self.FoodOrderMaster" />
+          <EntitySet Name="MenuItem_Master" EntityType="Self.MenuItem_Master" />
+          <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
+          <EntitySet Name="Weekday_Master" EntityType="Self.Weekday_Master" />
+          <EntitySet Name="Other_Expense" EntityType="SmartCanteenDBModel.Other_Expense" />
+        </EntityContainer>
+        <EntityType Name="Other_Expense">
+          <Key>
+            <PropertyRef Name="Expense_Id" />
+          </Key>
+          <Property Name="Expense_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpLoginId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Expense_Amount" Type="Double" Nullable="false" />
+          <Property Name="Expense_Date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SmartCanteenDBModelStoreContainer" CdmEntityContainer="SmartCanteenDBEntities">
+          <EntitySetMapping Name="CouponMasters">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.CouponMaster">
+              <MappingFragment StoreEntitySet="CouponMaster">
+                <ScalarProperty Name="CM_ID" ColumnName="CM_ID" />
+                <ScalarProperty Name="CM_Empid" ColumnName="CM_Empid" />
+                <ScalarProperty Name="CM_Date" ColumnName="CM_Date" />
+                <ScalarProperty Name="CM_FLR_ID" ColumnName="CM_FLR_ID" />
+                <ScalarProperty Name="CM_Requested_bln" ColumnName="CM_Requested_bln" />
+                <ScalarProperty Name="CM_Accepted_bln" ColumnName="CM_Accepted_bln" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CouponNotifications">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.CouponNotification">
+              <MappingFragment StoreEntitySet="CouponNotification">
+                <ScalarProperty Name="CN_ID" ColumnName="CN_ID" />
+                <ScalarProperty Name="CN_CM_ID" ColumnName="CN_CM_ID" />
+                <ScalarProperty Name="CN_CM_Empid" ColumnName="CN_CM_Empid" />
+                <ScalarProperty Name="CN_CM_Date" ColumnName="CN_CM_Date" />
+                <ScalarProperty Name="CN_CM_FLR_ID" ColumnName="CN_CM_FLR_ID" />
+                <ScalarProperty Name="CN_CM_Requested_bln" ColumnName="CN_CM_Requested_bln" />
+                <ScalarProperty Name="CN_CM_Accepted_bln" ColumnName="CN_CM_Accepted_bln" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyMenuMasters">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.DailyMenuMaster">
+              <MappingFragment StoreEntitySet="DailyMenuMaster">
+                <ScalarProperty Name="Todays_Date" ColumnName="Todays_Date" />
+                <ScalarProperty Name="DMM_ID" ColumnName="DMM_ID" />
+                <ScalarProperty Name="DMM_WDM_ID" ColumnName="DMM_WDM_ID" />
+                <ScalarProperty Name="DMM_MI_ID" ColumnName="DMM_MI_ID" />
+                <ScalarProperty Name="DMM_MI_FCM_ID" ColumnName="DMM_MI_FCM_ID" />
+                <ScalarProperty Name="DMM_FM_ID" ColumnName="DMM_FM_ID" />
+                <ScalarProperty Name="DMM_From_Date" ColumnName="DMM_From_Date" />
+                <ScalarProperty Name="DMM_To_Date" ColumnName="DMM_To_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Empid" ColumnName="Empid" />
+                <ScalarProperty Name="EmpFirstName" ColumnName="EmpFirstName" />
+                <ScalarProperty Name="EmpLastName" ColumnName="EmpLastName" />
+                <ScalarProperty Name="EmpMobNo" ColumnName="EmpMobNo" />
+                <ScalarProperty Name="EmpLoginId" ColumnName="EmpLoginId" />
+                <ScalarProperty Name="EmpPassword" ColumnName="EmpPassword" />
+                <ScalarProperty Name="EmpType" ColumnName="EmpType" />
+                <ScalarProperty Name="Emp_FM_ID" ColumnName="Emp_FM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Floor_Master">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.Floor_Master">
+              <MappingFragment StoreEntitySet="Floor_Master">
+                <ScalarProperty Name="FM_Id" ColumnName="FM_Id" />
+                <ScalarProperty Name="FM_Description" ColumnName="FM_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodCategoryMasters">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.FoodCategoryMaster">
+              <MappingFragment StoreEntitySet="FoodCategoryMaster">
+                <ScalarProperty Name="FCM_ID" ColumnName="FCM_ID" />
+                <ScalarProperty Name="FCM_Type" ColumnName="FCM_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodOrderMasters">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.FoodOrderMaster">
+              <MappingFragment StoreEntitySet="FoodOrderMaster">
+                <ScalarProperty Name="FOM_ID" ColumnName="FOM_ID" />
+                <ScalarProperty Name="FOM_EmpLoginId" ColumnName="FOM_EmpLoginId" />
+                <ScalarProperty Name="FOM_FloorId" ColumnName="FOM_FloorId" />
+                <ScalarProperty Name="FOM_CategoryId" ColumnName="FOM_CategoryId" />
+                <ScalarProperty Name="FOM_MenuItemId" ColumnName="FOM_MenuItemId" />
+                <ScalarProperty Name="FOM_Qty" ColumnName="FOM_Qty" />
+                <ScalarProperty Name="FOM_OrderNumber" ColumnName="FOM_OrderNumber" />
+                <ScalarProperty Name="FOM_OrderCost" ColumnName="FOM_OrderCost" />
+                <ScalarProperty Name="FOM_Date" ColumnName="FOM_Date" />
+                <ScalarProperty Name="FOM_ToCart" ColumnName="FOM_ToCart" />
+                <ScalarProperty Name="FOM_RequestedBln" ColumnName="FOM_RequestedBln" />
+                <ScalarProperty Name="FOM_ConfirmedBln" ColumnName="FOM_ConfirmedBln" />
+                <ScalarProperty Name="FOM_CancelledBln" ColumnName="FOM_CancelledBln" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuItem_Master">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.MenuItem_Master">
+              <MappingFragment StoreEntitySet="MenuItem_Master">
+                <ScalarProperty Name="MI_FoodType" ColumnName="MI_FoodType" />
+                <ScalarProperty Name="MI_ID" ColumnName="MI_ID" />
+                <ScalarProperty Name="MI_Description" ColumnName="MI_Description" />
+                <ScalarProperty Name="MI_Price" ColumnName="MI_Price" />
+                <ScalarProperty Name="MI_FCM_ID" ColumnName="MI_FCM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserTypedescription" ColumnName="UserTypedescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Weekday_Master">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.Weekday_Master">
+              <MappingFragment StoreEntitySet="Weekday_Master">
+                <ScalarProperty Name="WDM_ID" ColumnName="WDM_ID" />
+                <ScalarProperty Name="WDM_Description" ColumnName="WDM_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Other_Expense">
+            <EntityTypeMapping TypeName="SmartCanteenDBModel.Other_Expense">
+              <MappingFragment StoreEntitySet="Other_Expense">
+                <ScalarProperty Name="Expense_Date" ColumnName="Expense_Date" />
+                <ScalarProperty Name="Expense_Amount" ColumnName="Expense_Amount" />
+                <ScalarProperty Name="EmpLoginId" ColumnName="EmpLoginId" />
+                <ScalarProperty Name="Expense_Id" ColumnName="Expense_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

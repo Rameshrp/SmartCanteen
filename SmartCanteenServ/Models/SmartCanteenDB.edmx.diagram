@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="15a1a19412cb4e00ba0fab914f793d71" Name="Diagram1">
+        <EntityTypeShape EntityType="SmartCanteenDBModel.CouponMaster" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.CouponNotification" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.DailyMenuMaster" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.Employee" Width="1.5" PointX="0.625" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.Floor_Master" Width="1.5" PointX="2.375" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.FoodCategoryMaster" Width="1.5" PointX="4" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.FoodOrderMaster" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.MenuItem_Master" Width="1.5" PointX="5.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.UserMaster" Width="1.5" PointX="7.375" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.Weekday_Master" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCanteenDBModel.Other_Expense" Width="1.5" PointX="8.75" PointY="2.625" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
